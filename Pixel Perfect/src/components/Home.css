@@ -1,0 +1,239 @@
+/* General styles */
+.home {
+  font-family: Suranna;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh; /* Ensure the minimum height of the page is 100vh */
+  display: block;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Carousel container */
+.carousel-container {
+  position: relative; /* Normal positioning */
+  width: 100%;
+  height: 100vh; /* Full viewport height for carousel */
+  overflow: hidden; /* Hide anything that overflows the carousel */
+  z-index: 0; /* Ensure carousel stays at the top */
+}
+
+/* Slide container */
+.slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Slide styles */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 1.5s ease-in-out; /* Smooth fade-in */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Active slide */
+.slide.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Slide content (title, description, button) */
+.slide-content {
+  text-align: center;
+  color: white;
+}
+
+.slide-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.slide-text {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.explore-button {
+  padding: 12px 20px;
+  background-color: #2e2e2e;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+  background-color: #000000;
+}
+
+/* General content section */
+/* General content section */
+.content-section {
+  padding: 50px 30px;
+  text-align: center;
+  min-height: 100vh;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Container for the 3 columns */
+.columns-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* Add space between columns */
+  margin-top: 40px;
+}
+
+/* Column Style */
+.column {
+  flex: 1; /* Each column takes equal width */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #fff; /* Default text color for readability */
+}
+
+.column img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.column:nth-child(odd) h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #031930;
+}
+
+.column:nth-child(even) h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.column:nth-child(odd) p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #0f222e;
+  font-weight: bold;
+  font-family: 'Josefin Sans';
+}
+
+.column:nth-child(even) p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Josefin Sans';
+}
+
+.column-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #e7ded0, #37729c);
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.column-button:hover {
+  background-color: #000000;
+}
+
+/* Background color alternation for odd and even columns */
+.columns-container .column:nth-child(odd) {
+  background-color: #d1dded; 
+}
+
+.columns-container .column:nth-child(even) {
+  background-color: #223a59; 
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+  padding: 50px 30px;
+  background-color: #f5f5f5;
+  position: relative;
+  margin-top: 30px;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  flex-direction: column; /* Stack content vertically */
+}
+
+/* Contact content container */
+.contact-content {
+  text-align: center;
+  max-width: 2000px; /* Limit the width of the section */
+  width: 100%;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Title styling */
+.contact-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #d1dded;  /* Adjust text color */
+}
+
+/* Paragraph under the title */
+.contact-section p {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #d1dded;  /* Adjust text color */
+}
+
+/* Contact icons container */
+.contact-icons {
+  display: flex;
+  flex-direction: column; /* Stack icons vertically */
+  gap: 30px; /* Add space between icons */
+  justify-content: center;
+  align-items: center; /* Center icons horizontally */
+  margin-top: 40px; /* Add spacing between paragraph and icons */
+  margin-right: 1600px;
+}
+
+/* Individual icon styling */
+.contact-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem; /* Adjust icon size */
+  color: #223a59; /* Green color for icons */
+  cursor: pointer; /* Make icons clickable */
+}
+
+/* Text label under the icons */
+.contact-icon p {
+  font-size: 1.1rem;
+  color: #223a59;
+  margin-top: 5px;
+  text-transform: uppercase;
+}

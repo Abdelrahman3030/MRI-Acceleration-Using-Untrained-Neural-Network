@@ -1,0 +1,340 @@
+.super-page-container {
+  grid-row: 2;
+  overflow-y: auto;
+  width: 100%; /* Full width */
+  height: calc(100vh - 80px); /* Full height minus navbar height */
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  color: #031930;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row; /* Side by side layout for left and right sections */
+  justify-content: space-between; /* Distribute space between the two sections */
+  gap: 20px; /* Gap between left and right */
+  margin-top: 20px;
+}
+
+.super-left {
+  flex: 1;
+  max-width: 600px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.super-right {
+  flex: 1;
+  min-height: 510px;
+  display: flex;
+  justify-content: center; /* Center the example image */
+  align-items: center;
+  padding-left: 20px;
+  background-image: url('./super.png'); /* Path to the image */
+  background-size: contain; /* Ensure the image doesn't stretch and fits inside */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  height: 100%; /* Ensure the height of the section is filled */
+  border-radius: 30px;
+  max-width: 100%; /* Limit width for better responsiveness */
+  max-height: 100%; /* Limit height to avoid image becoming too tall */
+}
+
+.super-header {
+  font-size: 3.2rem;
+  margin-left: 11.5rem;
+  font-weight: 600;
+}
+
+.upload-section {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column; /* Stack instructions vertically */
+  margin-bottom: 20px;
+}
+
+.super-step {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 30px; /* Make the instructions appear as rounded "tents" */
+  font-size: 2rem;
+  font-weight: 600;
+  min-width: 500px;
+  color: #ffffff; /* Text color inside the tent */
+}
+
+.step-number {
+  font-size: 2.1rem;
+  margin-right: 30px;
+  margin-left: 60px;
+}
+
+.super-step:nth-child(odd){
+  background-color: #d1dded;
+}
+
+.super-step:nth-child(even){
+  background-color: #37729c;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-left: 600px;
+  margin-top: 100px;
+}
+
+.file-input {
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #e7ded0, #37729c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.custom-file-label:hover {
+  background-color: #022401;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.super-button:disabled {
+  background-color: #888; /* Grey out the button */
+  cursor: not-allowed; /* Show the disabled cursor */
+  opacity: 0.6; /* Make it look disabled */
+}
+
+.custom-file-label.disabled {
+  background-color: #888; /* Light grey background */
+  color: #bbb; /* Greyed-out text */
+  cursor: not-allowed; /* Disable pointer events */
+  opacity: 0.6; /* Make the label appear greyed out */
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #37729c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.custom-file-label:hover {
+  background-color: #022401;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.image-preview img {
+  max-width: 100%;
+  min-width: 1000px;
+  min-height: 300px;
+  height: auto;
+  border: 2px solid #37729c;
+  margin-bottom: 1rem;
+  opacity: 1;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  100% { opacity: 1; }
+}
+
+.super-button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #e7ded0, #37729c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  margin-top: 20px; /* Space between the button and previous content */
+  width: 100%; /* Button width */
+  max-width: 300px; /* Maximum width for the button */
+  text-align: center;
+  margin-left: 750px;
+  font-family: Suranna;
+}
+
+.super-button:hover {
+  background-color: #022401;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.super-button.disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.progress-section {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+.progress-section progress {
+  width: 100%;
+  height: 20px;
+  appearance: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-section progress::-webkit-progress-bar {
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+.progress-section progress::-webkit-progress-value {
+  background: linear-gradient(to right, #d1dded, #37729c);
+  border-radius: 10px;
+}
+
+.result-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.image-comparison {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1600px; /* Increased max width for larger images */
+  margin: 1rem auto; /* Centered with more vertical space */
+  padding: 2rem 0; /* Adds vertical padding */
+  gap: 1.5rem; /* Space between images */
+}
+
+.image-comparison .original-image,
+.image-comparison .processed-image {
+  position: relative;
+  width: 100%; /* Larger width */
+  height: 100%; /* Larger height */
+  border: 2px solid #37729c;
+  border-radius: 8px; /* Rounded corners for a cleaner look */
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Adds a soft shadow */
+}
+
+.image-comparison img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Styling for labels */
+.image-comparison .original-image::before,
+.image-comparison .processed-image::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.image-comparison .original-image h4,
+.image-comparison .processed-image h4 {
+  background: linear-gradient(135deg, #e7ded0, #37729c);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.download-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #e7ded0, #37729c);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-button:hover {
+  background-color: #022401;
+  transform: scale(1.05);
+}
+
+.spinner {
+  margin: 10px auto;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.animated-progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  animation: progressAnimation 3s linear infinite;
+}
+
+@keyframes progressAnimation {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .instructions {
+    flex-direction: column;
+  }
+  .step {
+    margin-bottom: 1rem;
+  }
+  .left, .right {
+    min-width: 100%;
+    padding-left: 0;
+  }
+}
