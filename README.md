@@ -11,21 +11,68 @@ Accelerated MRI Reconstruction Using Untrained Neural Networks (Deep Image Prior
 This repository implements **MRI reconstruction from undersampled k-space** using an **untrained neural network**, inspired by the *Deep Image Prior* principle.  
 Instead of training on large datasets, the network is **optimized per scan** to reconstruct the full MRI image from sparse measurements — reducing MRI scan time while maintaining reconstruction quality.
 
-This approach is flexible, data-efficient, and particularly useful when:
-- Fully-sampled MRI datasets are unavailable  
-- Undersampling patterns vary  
-- You want reconstruction without supervised learning  
+---
+
+## 🧠 Methodology Summary
+This project builds on three major untrained neural architectures:
+
+### **1. Deep Image Prior (DIP)**
+A randomly-initialized CNN is optimized to fit the target MRI slice directly.
+
+### **2. Deep Decoder**
+A lightweight upsampling-based architecture.
+
+### **3. ConvDecoder (Main Model)**
+An untrained CNN with:
+- convolutional blocks  
+- upsampling layers  
+- multi-domain loss functions  
+- data consistency terms  
+- optional NUFFT support for non-Cartesian trajectories
+
+ConvDecoder forms the core MRI reconstruction pipeline.
 
 ---
 
-## 🚀 Key Features  
-- UNet / ConvDecoder architecture implementations  
-- Works directly on undersampled k-space data  
-- No pretraining required (untrained DIP-style optimization)  
-- GIF visualizations of reconstruction progress  
-- Checkpoints, loss curves, and output comparisons  
-- Flexible architecture & hyperparameter configuration  
-- Large file support (via Git LFS recommended for .ckpt and .gif files)
+## 🚀 Key Technical Contributions
+### **1. ConvDecoder outperforms other untrained methods**
+Experiments show ConvDecoder outperforming:
+- DIP  
+- Deep Decoder  
+- TV minimization  
+- ENLIVE  
+
+Achieves competitive SSIM/PSNR vs trained U-Nets.
+
+### **2. 10× Faster Reconstruction**
+A domain-specific initialization reduces reconstruction time:
+- **From 60 minutes → 6 minutes**  
+with minimal quality loss.
+
+### **3. Multi-Loss ConvDecoder**
+Combines spatial, perceptual, and frequency losses for robust reconstructions.
+
+### **4. Non-Cartesian MRI Support**
+NUFFT-based forward model enables reconstruction of:
+- radial  
+- spiral  
+- arbitrary trajectories  
+
+### **5. Ensemble ConvDecoder**
+Multiple ConvDecoders with different initializations improve fine-detail quality.
+
+---
+
+## 📊 Results Summary
+Based on experiments from the documentation:
+
+- ConvDecoder ≈ U-Net on many metrics  
+- ConvDecoder > TV & ENLIVE consistently  
+- ConvDecoder > DIP/Deep Decoder on knee MRI  
+- Brain MRI: untrained methods behave similarly  
+- Non-Cartesian reconstructions achieve:  
+  - **SSIM up to 0.98**  
+  - **PSNR up to ~41.8 dB**
 
 ---
 
@@ -33,15 +80,17 @@ This approach is flexible, data-efficient, and particularly useful when:
 ```
 MRI-Acceleration-Using-Untrained-Neural-Network/
 │
-├── ConvDecoder/                # Neural network architectures + checkpoints
-│   └── UNET_trained/           # Example trained weights (.ckpt)
+├── ConvDecoder/
+│   └── UNET_trained/
 │
-├── Pixel Perfect/              # Front-end assets (GIFs, visualizations)
-│   └── src/assets/mri.gif      # 50MB MRI reconstruction animation
+├── Pixel Perfect/
+│   └── src/assets/mri.gif
 │
-├── results/                    # Generated outputs (if applicable)
-├── scripts/                    # Training / reconstruction scripts
-├── data/                       # Example input (user provides own MRI data)
+├── results/
+├── scripts/
+├── data/
+├── docs/
+│   └── Project_Report.pdf
 │
 ├── README.md
 └── LICENSE
@@ -59,86 +108,61 @@ pip install -r requirements.txt
 ---
 
 ## ▶️ Usage  
-### **Prepare Your Data**
-Place your undersampled k-space / mask files into the `data/` directory  
-(or update paths inside the script).
+### Step 1 — Prepare Data  
+Place undersampled k-space files into `data/`.
 
-### **Run Reconstruction**
+### Step 2 — Run Reconstruction  
 ```bash
-python run_reconstruction.py     --data path/to/undersampled_kspace     --undersample_factor 8     --iters 3000     --lr 1e-3
+python run_reconstruction.py     --data path/to/kspace     --undersample_factor 8     --iters 3000     --lr 1e-3
 ```
 
-### **Outputs**
-- Reconstructed MRI images  
-- Optional reconstruction GIFs  
-- Checkpoints (`.ckpt`)  
-- Comparison figures in `results/`  
+### Outputs  
+- reconstructed MRI  
+- GIFs  
+- checkpoints  
+- results in `/results`
 
 ---
 
-## 📊 Example Reconstruction (GIF)  
-This repository includes:
+## 🏗️ System Architecture Overview
+### **Frontend**
+- React.js  
+- Redux  
+- SCSS  
+- canvas viewer  
+- light/dark mode  
 
-```
-Pixel Perfect/src/assets/mri.gif
-```
+### **Backend**
+- Flask API for ML  
+- Node.js email microservice  
+- Resend API  
+- Google Colab compute backend  
 
-A 50MB GIF visualizing reconstruction progress.  
-(Consider enabling Git LFS if editing large assets.)
-
----
-
-## 📚 Background  
-This project is based on the idea of optimizing an untrained CNN directly on a single input scan.  
-Advantages:
-
-- No dataset required  
-- Avoids overfitting to training sets  
-- Naturally regularizes solutions  
-- Works even with highly sparse sampling
-
-Related ideas:  
-- **Deep Image Prior**  
-- **Untrained neural priors for MRI**  
-- **Plug-and-play reconstruction**
-
----
-
-## ⚠️ Limitations  
-- Slow: optimization is performed **per scan**  
-- Not suitable for clinical production use  
-- Large files should be tracked with Git LFS  
-- Sensitive to hyperparameters and sampling masks  
+### **Workflow**
+1. User uploads MRI  
+2. Flask pipes it to ConvDecoder  
+3. MRI processed locally or via Colab  
+4. Email sent on completion (for MRI)  
+5. Images processed instantly  
 
 ---
 
 ## 🤝 Contributing  
-Contributions are welcome!  
-You can help by adding:
-
-- Better architectures (e.g., DIP-UNet, SwinUNet, ConvNeXt blocks)  
-- Faster optimization techniques  
-- Multi-coil MRI support  
-- Evaluation metrics (SSIM, PSNR)  
-
-Open an issue or pull request anytime.
+Contributions welcome!  
+Ideas:
+- new architectures  
+- faster optimization  
+- multi-coil MRI  
+- more metrics (SSIM/PSNR logs)
 
 ---
 
 ## 📜 License  
-This project is licensed under the **MIT License**.  
-See [LICENSE](LICENSE) for full details.
+MIT License — see `LICENSE`.
 
 ---
 
 ## 📣 Citation  
-If you use this repository in research:
-
 ```
 Abdelrahman3030. MRI-Acceleration-Using-Untrained-Neural-Network. GitHub, 2025.
 ```
-
----
-
-## ⭐ If you found this useful  
-Please consider starring ⭐ the repo!
