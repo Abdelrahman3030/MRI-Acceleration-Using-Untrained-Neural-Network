@@ -89,8 +89,8 @@ MRI-Acceleration-Using-Untrained-Neural-Network/
 ├── results/
 ├── scripts/
 ├── data/
-├── docs/
-│   └── Project_Report.pdf
+├── Docs/
+│   └── MRI Reconstruction Documentation.pdf
 │
 ├── README.md
 └── LICENSE
